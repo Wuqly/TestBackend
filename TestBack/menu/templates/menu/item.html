@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ item.name }}</title>
+</head>
+<body>
+    <h1>{{ item.name }}</h1>
+    <p>Slug: {{ item.slug }}</p>
+    
+    {% if item.parent %}
+        <p>Parent: <a href="{{ item.parent.get_url }}">{{ item.parent.name }}</a></p>
+    {% endif %}
+    
+    {% if item.children.exists %}
+        <h2>Children:</h2>
+        <ul>
+        {% for child in item.children.all %}
+            <li><a href="{{ child.get_url }}">{{ child.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
